@@ -7,10 +7,12 @@ public class Portal_Event : MonoBehaviour
 {
     public string sceneToLoad = "OutdoorsScene"; // The name of the scene to load
 
+    private string debugClassName = typeof(Button_controller).Name;
+
     private void OnMouseUpAsButton()
     {
-        Debug.Log("Portal Clicked");
-        LoadScene();
+        Debug.Log($"{debugClassName}: Portal Clicked, TEMP DISABLED");
+        //LoadScene();
     }
 
     private void LoadScene()
