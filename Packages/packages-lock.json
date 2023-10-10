@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "ca.andydbc.unity-texture-packer": {
-      "version": "file:G:/Downloads/unity-texture-packer-master/unity-texture-packer-master",
+      "version": "file:C:/Users/alkis/OneDrive/Desktop/UU Master/Period 5/AI for games/unity-texture-packer-master",
       "depth": 0,
       "source": "local",
       "dependencies": {}
@@ -125,9 +125,9 @@
       }
     },
     "com.unity.render-pipelines.high-definition-config": {
-      "version": "14.0.8",
-      "depth": 1,
-      "source": "builtin",
+      "version": "file:com.unity.render-pipelines.high-definition-config",
+      "depth": 0,
+      "source": "embedded",
       "dependencies": {
         "com.unity.render-pipelines.core": "14.0.8"
       }
