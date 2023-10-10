@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class RayCasting : MonoBehaviour
 {
-    public GameObject ui_text;
+    [Tooltip("Use UI GameObject")]
+    public GameObject use_ui_text;
+    [Tooltip("Talk UI GameObject")]
+    public GameObject talk_use_ui_text;
     public int excluded_layer = 8;              // Layer to Exclude from Raycasting
     public float max_distance = 10.0f;
+    public bool raycast_enabled = true;
 
     private GameObject player_object;
     private GameObject hit_gameobject;
@@ -20,9 +24,15 @@ public class RayCasting : MonoBehaviour
         {
             if (hit_gameobject.CompareTag("Button"))
             {
-                ui_text.SetActive(false);
+                use_ui_text.SetActive(false);
 
                 hit_gameobject.GetComponent<ButtonHandler>().setRaycast(false);
+            }
+            else if (hit_gameobject.CompareTag("NPC"))
+            {
+                talk_use_ui_text.SetActive(false);
+
+                hit_gameobject.GetComponent<NPC>().setRaycast(false);
             }
         }
     }
@@ -42,6 +52,9 @@ public class RayCasting : MonoBehaviour
     void FixedUpdate()
     {
         RaycastHit hit;
+
+        if (!raycast_enabled)
+            return;
 
         // Camera Based Raycast
         if (gameObject.CompareTag("MainCamera") && Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, max_distance, layer_mask, QueryTriggerInteraction.Collide))  // Generate Ray and Trigger Colliders
@@ -63,7 +76,7 @@ public class RayCasting : MonoBehaviour
 
                 hit_gameobject.GetComponent<ButtonHandler>().setRaycast(true);
 
-                ui_text.SetActive(true);
+                use_ui_text.SetActive(true);
             }
             else if (hit.transform.gameObject.CompareTag("Lever"))
             {
@@ -73,7 +86,17 @@ public class RayCasting : MonoBehaviour
 
                 hit_gameobject.GetComponent<LeverHandler>().setRaycast(true);
 
-                ui_text.SetActive(true);
+                use_ui_text.SetActive(true);
+            }
+            else if (hit.transform.gameObject.CompareTag("NPC"))
+            {
+                hit_flag = true;
+
+                hit_gameobject = hit.transform.gameObject;
+
+                hit_gameobject.GetComponent<NPC>().setRaycast(true);
+
+                talk_use_ui_text.SetActive(true);
             }
 
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);

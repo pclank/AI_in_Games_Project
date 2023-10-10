@@ -1,0 +1,75 @@
+{
+    "dialogue_list": [
+        {
+            "dialogue_id": 0,
+            "dialogue_name": "Tutorial",
+			"npc_lines": [
+				{
+					"line_id": 0,
+					"player_id": 0,
+					"line": "Hmm. Another stranger it seems. Let me guess, you're looking for something."
+				},
+				{
+				
+					"line_id": 1,
+					"player_id": 1,
+					"line": "Bold move stranger. Fine. Have it your way. I didn't like it too much anyway."
+				},
+				{
+				
+					"line_id": 2,
+					"player_id": 1,
+					"line": "I guess we have no choice but to work together stranger. Here's the key. Don't do anything stupid now."
+				},
+				{
+				
+					"line_id": 3,
+					"player_id": 1,
+					"line": "Cursed? Is that why I haven't been able to get out? Darn, have at it stranger."
+				}
+			],
+            "player_lines": [
+                {
+					"line_id": 0,
+                    "choices": [
+						{
+							"next_npc_line": 1,
+							"response_type": "aggressive",
+							"line": "Give me that key! I know you have it!"
+						},
+						{
+							"next_npc_line": 2,
+							"response_type": "diplomatic",
+							"line": "I am indeed. I seem to be locked here. If you can help me find the key, I can get the both of us out."
+						},
+						{
+							"next_npc_line": 3,
+							"response_type": "deceptive",
+							"line": "I've been told the way out is cursed. Whomever holds the key is doomed to stay here for all eternity. I can help you get out. You just have to give it to me."
+						}
+					]
+                },
+				{
+					"line_id": 1,
+                    "choices": [
+						{
+							"next_npc_line": -1,
+							"response_type": "aggressive",
+							"line": "No freedom for you fiend!"
+						},
+						{
+							"next_npc_line": -1,
+							"response_type": "diplomatic",
+							"line": "Thank you. Now, let's get you out of here."
+						},
+						{
+							"next_npc_line": -1,
+							"response_type": "deceptive",
+							"line": "I'll come back for you."
+						}
+					]
+                }
+            ]
+        }
+	]
+}
