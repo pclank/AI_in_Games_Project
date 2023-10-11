@@ -7,7 +7,7 @@ public class Button_controller : MonoBehaviour
     public GameObject portalObject;   // Reference to the portal prefab instance.
     public GameObject portalDoorObject; // Reference to the object with the "Portal" tag
     public GameObject Message; 
-    public float displayDuration = 15f;
+    public float displayDuration = 5f;
 
     private bool displayMessage = false;
     private string debugClassName = typeof(Button_controller).Name;
