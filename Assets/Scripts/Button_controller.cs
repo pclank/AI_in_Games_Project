@@ -6,13 +6,22 @@ public class Button_controller : MonoBehaviour
 {
     public GameObject portalObject;   // Reference to the portal prefab instance.
     public GameObject portalDoorObject; // Reference to the object with the "Portal" tag
+    public GameObject Message; 
+    public float displayDuration = 15f;
 
+    private bool displayMessage = false;
     private string debugClassName = typeof(Button_controller).Name;
 
     private void OnMouseUpAsButton()
     {
         Debug.Log($"{debugClassName}: Button Works");
         TogglePortalVisibility();
+
+        if (Message != null)
+        {
+            Message.gameObject.SetActive(true);
+            StartCoroutine(HideImageAfterDelay());
+        }
     }
 
     private void TogglePortalVisibility()
@@ -56,4 +65,18 @@ public class Button_controller : MonoBehaviour
         else
             Debug.Log($"{debugClassName}: portalDoorObject is NULL!");
     }
+    
+    private IEnumerator HideImageAfterDelay()
+        {
+        yield return new WaitForSeconds(displayDuration);
+        displayMessage = false;
+
+        if (Message != null)
+        {
+            Message.gameObject.SetActive(false);
+        }
+    }
+        
+
+    
 }
