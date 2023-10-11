@@ -35,16 +35,19 @@
 						{
 							"next_npc_line": 1,
 							"response_type": "aggressive",
+							"item_id": -1,
 							"line": "Give me that key! I know you have it!"
 						},
 						{
 							"next_npc_line": 2,
 							"response_type": "diplomatic",
+							"item_id": -1,
 							"line": "I am indeed. I seem to be locked here. If you can help me find the key, I can get the both of us out."
 						},
 						{
 							"next_npc_line": 3,
 							"response_type": "deceptive",
+							"item_id": -1,
 							"line": "I've been told the way out is cursed. Whomever holds the key is doomed to stay here for all eternity. I can help you get out. You just have to give it to me."
 						}
 					]
@@ -55,16 +58,19 @@
 						{
 							"next_npc_line": -1,
 							"response_type": "aggressive",
+							"item_id": 1,
 							"line": "No freedom for you fiend!"
 						},
 						{
 							"next_npc_line": -1,
 							"response_type": "diplomatic",
+							"item_id": 1,
 							"line": "Thank you. Now, let's get you out of here."
 						},
 						{
 							"next_npc_line": -1,
 							"response_type": "deceptive",
+							"item_id": 1,
 							"line": "I'll come back for you."
 						}
 					]

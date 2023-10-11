@@ -36,6 +36,7 @@ public class JPlayerChoice
 {
     public int next_npc_line;
     public string response_type;
+    public int item_id;
     public string line;
 }
 
@@ -103,6 +104,12 @@ public class Conversation : MonoBehaviour
     {
         int prev_state = dialogue_state;
         dialogue_state = dialogue_in_json[dialogue_id].player_lines[dialogue_in_json[dialogue_id].npc_lines[dialogue_state].player_id].choices[choice_id].next_npc_line;
+
+        // Check whether you should give an item
+        if (dialogue_in_json[dialogue_id].player_lines[dialogue_in_json[dialogue_id].npc_lines[prev_state].player_id].choices[choice_id].item_id != -1)
+        {
+            player_object.GetComponent<Inventory>().GiveItem(dialogue_in_json[dialogue_id].player_lines[dialogue_in_json[dialogue_id].npc_lines[prev_state].player_id].choices[choice_id].item_id);
+        }
 
         // Exit dialogue
         if (dialogue_state == -1)
