@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8699605132829532287}
   - component: {fileID: 7739135574849224021}
   - component: {fileID: 1640966647691039495}
+  - component: {fileID: 4008893852995807555}
   m_Layer: 0
   m_Name: Portal Door
   m_TagString: Untagged
@@ -119,6 +120,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: OutdoorsScene
+--- !u!114 &4008893852995807555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075788923101137320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362f845d4ee0912408d2aacafd3950c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedX: 0.1
+  speedY: 0.1
 --- !u!1 &8669072070561276204
 GameObject:
   m_ObjectHideFlags: 0
