@@ -40,13 +40,16 @@ public class Portal_controller : MonoBehaviour
             Debug.Log($"{debugClassName}: portalDoor is NULL!");
     }
 
-    private void OnMouseUpAsButton()
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"{debugClassName}: Portal Clicked");
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log($"{debugClassName}: Player collided with portal.");
 
-        // Only teleport if the portal is active.
-        if (portalDoor.activeSelf)
-            LoadScene();
+            // Only teleport if the portal is active.
+            if (portalDoor.activeSelf)
+                LoadScene();
+        }
     }
 
     private void LoadScene()
