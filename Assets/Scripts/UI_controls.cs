@@ -5,9 +5,7 @@ using UnityEngine;
 public class UI_controls : MonoBehaviour
 {
     public GameObject uiObject;
-    public float displayDuration = 10f;
-    private bool displayMessage = false;
-
+    public float displayDuration = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,31 +18,23 @@ public class UI_controls : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             uiObject.SetActive(true);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            uiObject.SetActive(false);
+            StartCoroutine(HideImageAfterDelay());
         }
     }
 
     private IEnumerator HideImageAfterDelay()
     {
-    yield return new WaitForSeconds(displayDuration);
-    displayMessage = false;
+        yield return new WaitForSeconds(displayDuration);
 
-    if (uiObject != null)
+        if (uiObject != null)
         {
-            uiObject.gameObject.SetActive(false);
+            uiObject.SetActive(false);
         }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // Your update logic here, if needed
     }
-}
 }

@@ -1041,7 +1041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiObject: {fileID: 603732869}
-  displayDuration: 10
+  displayDuration: 5
 --- !u!1 &417949159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,7 +1422,7 @@ RectTransform:
   m_GameObject: {fileID: 603732869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1791999836}
@@ -1430,7 +1430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 350}
+  m_AnchoredPosition: {x: 0, y: -362}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &603732871
@@ -1486,7 +1486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8, g: 0.7706676, b: 0.09411764, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.36078432}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3601,8 +3601,8 @@ Transform:
   m_GameObject: {fileID: 1727957911}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.93, y: 0, z: 76.1}
-  m_LocalScale: {x: 3, y: 0, z: 10}
+  m_LocalPosition: {x: -2.93, y: 0, z: 95.36}
+  m_LocalScale: {x: 3, y: 0, z: 12}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 395634853}
@@ -3665,16 +3665,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Controls Tutorial
-
-    Move Forward - W
+  m_text: 'Move Forward - W
 
     Move Backwards - S
 
-    Move
-    Left - D
+    Move Left - D
 
-    Move Right - A
+    Move
+    Right - A
 
     Look around using the mouse'
   m_isRightToLeft: 0
@@ -3709,7 +3707,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
