@@ -1326,6 +1326,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue_id: 0
   delay: 1
+  disable_floating: 1
+  floating_object: {fileID: 1334501735}
 --- !u!1 &825066993
 GameObject:
   m_ObjectHideFlags: 0

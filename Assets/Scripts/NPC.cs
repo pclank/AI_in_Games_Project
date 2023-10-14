@@ -10,6 +10,12 @@ public class NPC : MonoBehaviour
     [Tooltip("Delay after conversation exit, before accepting raycasting.")]
     public float delay = 1.0f;
 
+    [Tooltip("Whether to disable a floating dialogue object after conversation start.")]
+    public bool disable_floating = false;
+
+    [Tooltip("Floating Dialogue to disable after conversation start.")]
+    public GameObject floating_object;
+
     private GameObject player_object;
     private bool ray_hit = false;
     private bool conversing = false;
@@ -45,6 +51,9 @@ public class NPC : MonoBehaviour
         {
             player_object.GetComponent<Conversation>().StartDialogue(dialogue_id, gameObject);
             conversing = true;
+
+            if (disable_floating && floating_object != null)
+                floating_object.GetComponent<FloatingText>().StopDialogue();
         }
     }
 }
