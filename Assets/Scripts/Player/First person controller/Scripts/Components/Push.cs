@@ -29,7 +29,7 @@ public class NewBehaviourScript : MonoBehaviour
         
             Debug.Log($"looking at {obj.name}", this);
 
-            if ((obj.transform.position - this.transform.position).sqrMagnitude < ArmLength*ArmLength)
+            if (obj.tag == "Pushable" && (obj.transform.position - this.transform.position).sqrMagnitude < ArmLength*ArmLength)
             {
                 Debug.Log($"{obj.name} in reach", this);
                 if(Input.GetKeyDown(PushKey)){
