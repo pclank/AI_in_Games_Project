@@ -1,0 +1,42 @@
+{
+    "dialogue_list": [
+		{
+            "dialogue_id": 0,
+            "dialogue_name": "Tutorial",
+			"n_lines": 3,
+			"lines": [
+				{
+					"line_id": 0,
+					"line": "Hey, you."
+				},
+				{
+					"line_id": 1,
+					"line": "Yeah, you."
+				},
+				{
+					"line_id": 2,
+					"line": "Come here."
+				}
+			]
+        },
+        {
+            "dialogue_id": 1,
+            "dialogue_name": "SMT",
+			"n_lines": 3,
+			"lines": [
+				{
+					"line_id": 0,
+					"line": "Hey, you."
+				},
+				{
+					"line_id": 1,
+					"line": "Hey, you."
+				},
+				{
+					"line_id": 2,
+					"line": "Hey, you."
+				}
+			]
+        }
+	]
+}
