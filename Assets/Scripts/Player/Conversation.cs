@@ -61,6 +61,7 @@ public class Conversation : MonoBehaviour
     public GameObject choice0_ui;
     public GameObject choice1_ui;
     public GameObject choice2_ui;
+    public GameObject sfx_object;
 
     private string json_string;
     private JDialogue[] dialogue_in_json;
@@ -108,6 +109,8 @@ public class Conversation : MonoBehaviour
         // Check whether you should give an item
         if (dialogue_in_json[dialogue_id].player_lines[dialogue_in_json[dialogue_id].npc_lines[prev_state].player_id].choices[choice_id].item_id != -1)
         {
+            sfx_object.GetComponent<SFXPlayer>().PlaySFX(0);
+
             player_object.GetComponent<Inventory>().GiveItem(dialogue_in_json[dialogue_id].player_lines[dialogue_in_json[dialogue_id].npc_lines[prev_state].player_id].choices[choice_id].item_id);
         }
 

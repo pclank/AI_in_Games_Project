@@ -41,7 +41,7 @@ public class NPC : MonoBehaviour
             enable_delay = false;
         }
 
-        if (!conversing && ray_hit && Input.GetMouseButtonUp(0))
+        if (!conversing && ray_hit && Input.GetKeyUp(KeyCode.E))
         {
             player_object.GetComponent<Conversation>().StartDialogue(dialogue_id, gameObject);
             conversing = true;
