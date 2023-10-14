@@ -36,18 +36,21 @@
 							"next_npc_line": 1,
 							"response_type": "aggressive",
 							"item_id": -1,
+							"action": 0,
 							"line": "Give me that key! I know you have it!"
 						},
 						{
 							"next_npc_line": 2,
 							"response_type": "diplomatic",
 							"item_id": -1,
+							"action": 0,
 							"line": "I am indeed. I seem to be locked here. If you can help me find the key, I can get the both of us out."
 						},
 						{
 							"next_npc_line": 3,
 							"response_type": "deceptive",
 							"item_id": -1,
+							"action": 0,
 							"line": "I've been told the way out is cursed. Whomever holds the key is doomed to stay here for all eternity. I can help you get out. You just have to give it to me."
 						}
 					]
@@ -59,19 +62,195 @@
 							"next_npc_line": -1,
 							"response_type": "aggressive",
 							"item_id": 1,
+							"action": 0,
 							"line": "No freedom for you fiend!"
 						},
 						{
 							"next_npc_line": -1,
 							"response_type": "diplomatic",
 							"item_id": 1,
+							"action": 0,
 							"line": "Thank you. Now, let's get you out of here."
 						},
 						{
 							"next_npc_line": -1,
 							"response_type": "deceptive",
 							"item_id": 1,
+							"action": 0,
 							"line": "I'll come back for you."
+						}
+					]
+                }
+            ]
+        },
+		{
+            "dialogue_id": 1,
+            "dialogue_name": "Blocking NPC",
+			"npc_lines": [
+				{
+					"line_id": 0,
+					"player_id": 0,
+					"line": "Don't have time for you. Get lost!"
+				},
+				{
+				
+					"line_id": 1,
+					"player_id": 1,
+					"line": "Ha. Someone thinks they got the guts to confront me. What are you gonna do when I turn you away in a more violent way."
+				},
+				{
+				
+					"line_id": 2,
+					"player_id": 2,
+					"line": "Wait a second there. What is your angle? Why should I let you through?"
+				},
+				{
+				
+					"line_id": 3,
+					"player_id": 1,
+					"line": "Cursed? Is that why I haven't been able to get out? Darn, have at it stranger."
+				},
+				{
+				
+					"line_id": 4,
+					"player_id": 3,
+					"line": "Yeah? Get the hell out of here."
+				},
+				{
+				
+					"line_id": 5,
+					"player_id": 4,
+					"line": "Fine, fine. You can go right ahead. Hehe. Good luck."
+				}
+			],
+            "player_lines": [
+                {
+					"line_id": 0,
+                    "choices": [
+						{
+							"next_npc_line": 1,
+							"response_type": "aggressive",
+							"item_id": -1,
+							"action": 0,
+							"line": "I don't care much about your time. You are in my way."
+						},
+						{
+							"next_npc_line": 2,
+							"response_type": "diplomatic",
+							"item_id": -1,
+							"action": 0,
+							"line": "Sorry to bother you. I need to head down the hallway behind you."
+						},
+						{
+							"next_npc_line": 3,
+							"response_type": "deceptive",
+							"item_id": -1,
+							"action": 0,
+							"line": "There's been a terrible accident. I can help, but I need you to clear the way, before it's too late."
+						}
+					]
+                },
+				{
+					"line_id": 1,
+                    "choices": [
+						{
+							"next_npc_line": 5,
+							"response_type": "aggressive",
+							"item_id": -1,
+							"action": 0,
+							"line": "Play tough all you want. I am willing to do anything to reach my goal. An insignificant goon won't stop me."
+						},
+						{
+							"next_npc_line": -1,
+							"response_type": "diplomatic",
+							"item_id": -1,
+							"action": 0,
+							"line": "I apologize. I'll find another way."
+						},
+						{
+							"next_npc_line": 4,
+							"response_type": "deceptive",
+							"item_id": -1,
+							"action": 0,
+							"line": "Joke's on you! I am an expert practitioner of the combat arts."
+						}
+					]
+                },
+				{
+					"line_id": 2,
+                    "choices": [
+						{
+							"next_npc_line": 5,
+							"response_type": "aggressive",
+							"item_id": -1,
+							"action": 0,
+							"line": "Non of your business. Now let me through."
+						},
+						{
+							"next_npc_line": 5,
+							"response_type": "diplomatic",
+							"item_id": -1,
+							"action": 0,
+							"line": "I don't have much of an angle, I'm afraid. Just trying to find out why I'm here. You'd be doing a great service to me if you let me by."
+						},
+						{
+							"next_npc_line": -1,
+							"response_type": "deceptive",
+							"item_id": -1,
+							"action": 0,
+							"line": "I, ahh... I was just leaving."
+						}
+					]
+                },
+				{
+					"line_id": 3,
+                    "choices": [
+						{
+							"next_npc_line": -1,
+							"response_type": "aggressive",
+							"item_id": -1,
+							"action": 0,
+							"line": "Fine. But I will be coming back for you."
+						},
+						{
+							"next_npc_line": -1,
+							"response_type": "diplomatic",
+							"item_id": -1,
+							"action": 0,
+							"line": "Sorry. I'll just go."
+						},
+						{
+							"next_npc_line": -1,
+							"response_type": "deceptive",
+							"item_id": -1,
+							"action": 0,
+							"line": "I was leaving anyway. There's a better way, anyhow."
+						}
+					]
+                },
+				{
+					"line_id": 4,
+                    "choices": [
+						{
+							"next_npc_line": -1,
+							"response_type": "aggressive",
+							"item_id": -1,
+							"action": 1,
+							"line": "Good for you. I'm glad we solved this diplomatically."
+						},
+						{
+							"next_npc_line": -1,
+							"response_type": "diplomatic",
+							"item_id": -1,
+							"action": 1,
+							"line": "Thank you. I appreciate your understanding."
+						},
+						{
+							"next_npc_line": -1,
+							"response_type": "deceptive",
+							"item_id": -1,
+							"action": 1,
+							"line": "I won't need it. They say I'm pretty good."
 						}
 					]
                 }

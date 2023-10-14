@@ -37,6 +37,7 @@ public class JPlayerChoice
     public int next_npc_line;
     public string response_type;
     public int item_id;
+    public int action;
     public string line;
 }
 
@@ -114,10 +115,19 @@ public class Conversation : MonoBehaviour
             player_object.GetComponent<Inventory>().GiveItem(dialogue_in_json[dialogue_id].player_lines[dialogue_in_json[dialogue_id].npc_lines[prev_state].player_id].choices[choice_id].item_id);
         }
 
+        // Check whether you should take an action
+        if (dialogue_in_json[dialogue_id].player_lines[dialogue_in_json[dialogue_id].npc_lines[prev_state].player_id].choices[choice_id].action == 1)
+        {
+            //sfx_object.GetComponent<SFXPlayer>().PlaySFX(2);
+
+            npc_object.GetComponent<NPCMoving>().Teleport();
+        }
+
         // Exit dialogue
         if (dialogue_state == -1)
         {
-            dialogue_state = prev_state;
+            //dialogue_state = prev_state;
+            dialogue_state = 0;
             EndDialogue();
 
             return;
@@ -143,7 +153,10 @@ public class Conversation : MonoBehaviour
 
         camera_object.GetComponent<RayCasting>().raycast_enabled = true;
 
-        npc_object.GetComponent<NPC>().ExitConversation();
+        if (npc_object.GetComponent<NPC>() != null)
+            npc_object.GetComponent<NPC>().ExitConversation();
+        else
+            npc_object.GetComponent<NPCMoving>().ExitConversation();
     }
 
     private void DisplayDialogue()

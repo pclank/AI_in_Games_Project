@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class RayCasting : MonoBehaviour
 {
-    [Tooltip("Use UI GameObject")]
+    [Tooltip("Use UI GameObject.")]
     public GameObject use_ui_text;
-    [Tooltip("Talk UI GameObject")]
+    [Tooltip("Talk UI GameObject.")]
     public GameObject talk_use_ui_text;
+    [Tooltip("Use Portal UI GameObject.")]
+    public GameObject portal_ui_text;
     public int excluded_layer = 8;              // Layer to Exclude from Raycasting
     public float max_distance = 10.0f;
     public bool raycast_enabled = true;
@@ -33,6 +35,18 @@ public class RayCasting : MonoBehaviour
                 talk_use_ui_text.SetActive(false);
 
                 hit_gameobject.GetComponent<NPC>().setRaycast(false);
+            }
+            else if (hit_gameobject.CompareTag("NPC_Pushable"))
+            {
+                talk_use_ui_text.SetActive(false);
+
+                hit_gameobject.GetComponent<NPCMoving>().setRaycast(false);
+            }
+            else if (hit_gameobject.CompareTag("Portal"))
+            {
+                portal_ui_text.SetActive(false);
+
+                hit_gameobject.GetComponent<Portal>().setRaycast(false);
             }
         }
     }
@@ -97,6 +111,26 @@ public class RayCasting : MonoBehaviour
                 hit_gameobject.GetComponent<NPC>().setRaycast(true);
 
                 talk_use_ui_text.SetActive(true);
+            }
+            else if (hit.transform.gameObject.CompareTag("NPC_Pushable"))
+            {
+                hit_flag = true;
+
+                hit_gameobject = hit.transform.gameObject;
+
+                hit_gameobject.GetComponent<NPCMoving>().setRaycast(true);
+
+                talk_use_ui_text.SetActive(true);
+            }
+            else if (hit.transform.gameObject.CompareTag("Portal"))
+            {
+                hit_flag = true;
+
+                hit_gameobject = hit.transform.gameObject;
+
+                hit_gameobject.GetComponent<Portal>().setRaycast(true);
+
+                portal_ui_text.SetActive(true);
             }
 
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);

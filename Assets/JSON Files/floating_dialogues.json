@@ -21,20 +21,16 @@
         },
         {
             "dialogue_id": 1,
-            "dialogue_name": "SMT",
-			"n_lines": 3,
+            "dialogue_name": "Blocking NPC",
+			"n_lines": 2,
 			"lines": [
 				{
 					"line_id": 0,
-					"line": "Hey, you."
+					"line": "Hmm."
 				},
 				{
 					"line_id": 1,
-					"line": "Hey, you."
-				},
-				{
-					"line_id": 2,
-					"line": "Hey, you."
+					"line": "That's right."
 				}
 			]
         }
