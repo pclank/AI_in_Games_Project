@@ -18,23 +18,46 @@ public class RedButton_controller : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    private void OnTriggerStay(Collider other)
     {
-        Debug.Log("On Trigger Enter");
+        string method = "OnTriggerStay";
+
+        //Debug.Log(method);
 
         if (other.CompareTag("Player"))
         {
-            Debug.Log("It is a player that just entered");
+            //Debug.Log($"{method}The object was a player");
 
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetMouseButtonDown(0) && !crate.gameObject.GetComponent<Crate_breaking>().broken)
             {
-                Debug.Log("The Mouse 0 button was pressed");
+                Debug.Log($"{method}The Mouse 0 button was pressed");
+
+                gameObject.GetComponent<AudioSource>().Play();
 
                 crate.gameObject.GetComponent<Rigidbody>().useGravity = true;
             }
-            if (Input.GetKeyDown(KeyCode.A))
+        }
+    }
+    
+    // Doesn't work if the object is 'asleep'/inactive?
+    private void OnCollisionStay(Collision collision)
+    {
+        string method = "OnCollisionStay";
+
+        //Debug.Log(method);
+
+        if (collision.collider.CompareTag("Player"))
+        {
+            //Debug.Log($"{method}The object was a player");
+
+            if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("The A button was pressed");
+                Debug.Log($"{method}The Mouse 0 button was pressed");
+
+                gameObject.GetComponent<AudioSource>().Play();
+
+                crate.gameObject.GetComponent<Rigidbody>().useGravity = true;
             }
         }
     }
