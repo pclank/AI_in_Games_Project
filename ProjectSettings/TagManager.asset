@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Button
   - Lever
+  - Correct part
+  - Incorrect part
   layers:
   - Default
   - TransparentFX

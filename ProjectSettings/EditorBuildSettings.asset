@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/NavigationPrototype.unity
     guid: 3512037a5c457bc42ac187c2a29c8099
+  - enabled: 1
+    path: Assets/FixMachinePuzzle.unity
+    guid: 8ef15c72af5918142a2eb61f40037661
   m_configObjects: {}

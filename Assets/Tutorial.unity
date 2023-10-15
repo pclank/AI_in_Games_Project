@@ -4984,7 +4984,7 @@ PrefabInstance:
     - target: {fileID: 8134086101333686743, guid: 3621199d998317c439757f11e95cc2b1,
         type: 3}
       propertyPath: sceneToLoad
-      value: NavigationPrototype
+      value: FixMachinePuzzle
       objectReference: {fileID: 0}
     - target: {fileID: 8134086101333686743, guid: 3621199d998317c439757f11e95cc2b1,
         type: 3}
