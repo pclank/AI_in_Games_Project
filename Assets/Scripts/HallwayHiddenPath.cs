@@ -30,7 +30,11 @@ public class HallwayHiddenPath : MonoBehaviour
     {
         if (timer_on && Time.time - timer >= timer_duration)
         {
-            hidden_wall_object.SetActive(false);
+            hidden_wall_object.GetComponent<AudioSource>().Play();
+
+            //hidden_wall_object.SetActive(false);
+            hidden_wall_object.GetComponent<MeshRenderer>().enabled = false;
+            hidden_wall_object.GetComponent<BoxCollider>().enabled = false;
 
             timer_on = false;
             Destroy(gameObject);

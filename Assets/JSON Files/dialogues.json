@@ -107,8 +107,8 @@
 				{
 				
 					"line_id": 3,
-					"player_id": 1,
-					"line": "Cursed? Is that why I haven't been able to get out? Darn, have at it stranger."
+					"player_id": 5,
+					"line": "Accident? What are you on about? I think I would have noticed an \"accident\"."
 				},
 				{
 				
@@ -251,6 +251,32 @@
 							"item_id": -1,
 							"action": 1,
 							"line": "I won't need it. They say I'm pretty good."
+						}
+					]
+                },
+				{
+					"line_id": 5,
+                    "choices": [
+						{
+							"next_npc_line": -1,
+							"response_type": "aggressive",
+							"item_id": -1,
+							"action": 0,
+							"line": "I will come back and deal with you later."
+						},
+						{
+							"next_npc_line": 5,
+							"response_type": "diplomatic",
+							"item_id": -1,
+							"action": 0,
+							"line": "I know you wouldn't want anybody hurt on your watch? How about you just let me through."
+						},
+						{
+							"next_npc_line": 5,
+							"response_type": "deceptive",
+							"item_id": -1,
+							"action": 0,
+							"line": "It must be the noise, since I found out through text. Multiple lives are at stake. You have to let me through."
 						}
 					]
                 }
