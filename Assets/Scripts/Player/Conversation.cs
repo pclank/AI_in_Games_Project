@@ -107,6 +107,9 @@ public class Conversation : MonoBehaviour
         int prev_state = dialogue_state;
         dialogue_state = dialogue_in_json[dialogue_id].player_lines[dialogue_in_json[dialogue_id].npc_lines[dialogue_state].player_id].choices[choice_id].next_npc_line;
 
+        // Log choice
+        player_object.GetComponent<LogConversation>().addAnalytics(dialogue_id, dialogue_in_json[dialogue_id].player_lines[dialogue_in_json[dialogue_id].npc_lines[prev_state].player_id].choices[choice_id].response_type);
+
         // Check whether you should give an item
         if (dialogue_in_json[dialogue_id].player_lines[dialogue_in_json[dialogue_id].npc_lines[prev_state].player_id].choices[choice_id].item_id != -1)
         {
