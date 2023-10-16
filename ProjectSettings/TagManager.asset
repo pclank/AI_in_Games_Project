@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Button
   - Lever
+  - Key
+  - Axe
+  - Door
   layers:
   - Default
   - TransparentFX
