@@ -41,6 +41,14 @@ public class Pickup_controller : MonoBehaviour
         {
             MoveObject();
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (heldObject != null)
+            {
+                ThrowObject();
+            }
+        }
     }
 
     void PickUpObject(GameObject objToPickUp)
@@ -80,5 +88,19 @@ public class Pickup_controller : MonoBehaviour
             Vector3 moveDirection = holdArea.position - heldObject.transform.position;
             heldObjRB.AddForce(moveDirection * pickupForce);
         }
+    }
+
+    void ThrowObject()
+    {
+        DropObject();
+
+        //GameObject player = GameObject.Find("Player");
+        Vector3 camPos = gameObject.transform.position;
+
+        //Debug.Log($"{nameof(holdArea)} = {holdArea.position}");
+        //Debug.Log($"{nameof(camPos)} = {camPos}");
+
+        Vector3 throwDirection = holdArea.position - camPos;
+        heldObjRB.AddForce(throwDirection * pickupForce * 2);
     }
 }
