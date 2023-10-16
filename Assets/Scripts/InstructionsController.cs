@@ -15,7 +15,7 @@ public class InstructionsController : MonoBehaviour
     private void Update()
     {
         // Check if the instructions should be displayed
-        if (timer < displayTime)
+        if (timer < displayTime) 
         {
             // Show the instructions
             instructionsCanvas.SetActive(true);
