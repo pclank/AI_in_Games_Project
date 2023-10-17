@@ -29,9 +29,9 @@ public class StatuePuzzle : MonoBehaviour
                 GameObject child = transform.GetChild(i).gameObject;
                 child.GetComponent<Renderer>().material = matSolved;
             }
-            S1.GetComponent<Renderer>().material = matSolved;
-            S2.GetComponent<Renderer>().material = matSolved;
-            S3.GetComponent<Renderer>().material = matSolved;
+            //S1.GetComponent<Renderer>().material = matSolved;
+            //S2.GetComponent<Renderer>().material = matSolved;
+            //S3.GetComponent<Renderer>().material = matSolved;
         }
     }
 }
