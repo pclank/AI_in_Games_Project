@@ -5,6 +5,8 @@ using UnityEngine;
 public class RayCasting : MonoBehaviour
 {
     public GameObject ui_text;
+    public GameObject hint_text;
+    public GameObject push_text;
     public int excluded_layer = 8;              // Layer to Exclude from Raycasting
     public float max_distance = 10.0f;
 
@@ -18,12 +20,22 @@ public class RayCasting : MonoBehaviour
     {
         if (gameObject.CompareTag("MainCamera") && hit_gameobject != null)
         {
-            if (hit_gameobject.CompareTag("Button"))
+            if (hit_gameobject.CompareTag("Button") || hit_gameobject.CompareTag("Pushable") || hit_gameobject.CompareTag("Hint"))
             {
                 ui_text.SetActive(false);
+                hint_text.SetActive(false);
+                push_text.SetActive(false);
 
-                hit_gameobject.GetComponent<ButtonHandler>().setRaycast(false);
-            }
+                ButtonHandler bh = hit_gameobject.GetComponent<ButtonHandler>();
+                if(bh != null) bh.setRaycast(false);
+                ResetButtonHandler rbh = hit_gameobject.GetComponent<ResetButtonHandler>();
+                if(rbh != null) rbh.setRaycast(false);
+                HintHandler hh = hit_gameobject.GetComponent<HintHandler>();
+                if(hh != null) hh.setRaycast(false);
+                PuzzleStatueHandler psh = hit_gameobject.GetComponent<PuzzleStatueHandler>();
+                if(psh != null) psh.setRaycast(false);
+
+            } 
         }
     }
 
@@ -61,10 +73,14 @@ public class RayCasting : MonoBehaviour
 
                 hit_gameobject = hit.transform.gameObject;
 
-                hit_gameobject.GetComponent<ButtonHandler>().setRaycast(true);
+                ButtonHandler bh = hit_gameobject.GetComponent<ButtonHandler>();
+                if(bh != null) bh.setRaycast(true);
+                ResetButtonHandler rbh = hit_gameobject.GetComponent<ResetButtonHandler>();
+                if(rbh != null) rbh.setRaycast(true);
 
                 ui_text.SetActive(true);
             }
+            
             else if (hit.transform.gameObject.CompareTag("Lever"))
             {
                 hit_flag = true;
@@ -74,6 +90,29 @@ public class RayCasting : MonoBehaviour
                 hit_gameobject.GetComponent<LeverHandler>().setRaycast(true);
 
                 ui_text.SetActive(true);
+            } 
+            
+            else if (hit.transform.gameObject.CompareTag("Hint"))
+            {
+                hit_flag = true;
+
+                hit_gameobject = hit.transform.gameObject;
+
+                hit_gameobject.GetComponent<HintHandler>().setRaycast(true);
+
+                hint_text.SetActive(true);
+            }
+
+            else if (hit.transform.gameObject.CompareTag("Pushable"))
+            {
+                hit_flag = true;
+
+                hit_gameobject = hit.transform.gameObject;
+
+                PuzzleStatueHandler psh = hit_gameobject.GetComponent<PuzzleStatueHandler>();
+                if(psh != null) psh.setRaycast(true);
+
+                push_text.SetActive(true);
             }
 
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
