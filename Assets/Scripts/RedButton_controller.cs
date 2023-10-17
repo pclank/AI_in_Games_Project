@@ -6,6 +6,8 @@ public class RedButton_controller : MonoBehaviour
 {
     public GameObject crate;
 
+    bool nearButton, buttonPressed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,50 +17,35 @@ public class RedButton_controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(0) && nearButton && !buttonPressed)
+        {
+            //Debug.Log($"Parent = {gameObject.transform.parent.name}");
+            Debug.Log($"Mesh = {gameObject.transform.parent.Find("Mesh").name}");
 
+            // Scaling the Button object like this also moves it for some reason?
+            //gameObject.transform.parent.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
+            gameObject.transform.parent.Find("Mesh").localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+            gameObject.GetComponent<AudioSource>().Play();
+
+            crate.gameObject.GetComponent<Rigidbody>().useGravity = true;
+
+            buttonPressed = true;
+        }
     }
 
-
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        string method = "OnTriggerStay";
-
+        //string method = "OnTriggerEnter";
         //Debug.Log(method);
 
         if (other.CompareTag("Player"))
         {
-            //Debug.Log($"{method}The object was a player");
-
-            if (Input.GetMouseButtonDown(0) && !crate.gameObject.GetComponent<Crate_breaking>().broken)
-            {
-                Debug.Log($"{method}The Mouse 0 button was pressed");
-
-                gameObject.GetComponent<AudioSource>().Play();
-
-                crate.gameObject.GetComponent<Rigidbody>().useGravity = true;
-            }
+            nearButton = true;
         }
     }
-    
-    // Doesn't work if the object is 'asleep'/inactive?
-    private void OnCollisionStay(Collision collision)
+
+    private void OnTriggerExit(Collider other)
     {
-        string method = "OnCollisionStay";
-
-        //Debug.Log(method);
-
-        if (collision.collider.CompareTag("Player"))
-        {
-            //Debug.Log($"{method}The object was a player");
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                Debug.Log($"{method}The Mouse 0 button was pressed");
-
-                gameObject.GetComponent<AudioSource>().Play();
-
-                crate.gameObject.GetComponent<Rigidbody>().useGravity = true;
-            }
-        }
+        nearButton = false;
     }
 }
