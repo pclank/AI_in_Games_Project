@@ -3,8 +3,9 @@ using UnityEngine.UI;
 
 public class UIScript : MonoBehaviour
 {
-    public Image smashHint;
-    public Image openHint;
+    public GameObject smashHint;
+    public GameObject openHint;
+    public GameObject bothHint;
 
     public void ShowSmashHint()
     {
@@ -14,6 +15,11 @@ public class UIScript : MonoBehaviour
     public void ShowOpenHint()
     {
         openHint.gameObject.SetActive(true);
+    }
+
+    public void ShowBothHint()
+    {
+        bothHint.gameObject.SetActive(true);
     }
 
     public void HideHints()

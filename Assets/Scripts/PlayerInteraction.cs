@@ -5,10 +5,15 @@ public class PlayerInteraction : MonoBehaviour
     public Door door;
     public Axe axe;
     public Key key;
-    public Animator Animator; // Attach the door Animator controller.
+    public Animator Animator;
     public GameObject smashHint;
     public GameObject openHint;
     public GameObject bothHint;
+    public GameObject pickedKey;
+    public GameObject pickedAxe;
+    public AudioSource SmashAudio;
+    public AudioSource OpeningAudio;
+
 
     private bool hasAxe = false;
     private bool hasKey = false;
@@ -18,6 +23,12 @@ public class PlayerInteraction : MonoBehaviour
         smashHint.SetActive(false);
         openHint.SetActive(false);
         bothHint.SetActive(false);
+        pickedAxe.SetActive(false);
+        pickedKey.SetActive(false);
+        //SmashAudio = GetComponent<AudioSource>();
+        //OpeningAudio = GetComponent<AudioSource>();
+
+        //Animator.SetBool("Opened", false);
     }
 
     private void Update()
@@ -77,25 +88,48 @@ public class PlayerInteraction : MonoBehaviour
     private void SmashDoor()
     {
         door.gameObject.SetActive(false); // Hide the door.
-        Animator.SetTrigger("Smashed");
-        // Play sound effect.
+        //Animator.SetTrigger("Smashed");
+        if (SmashAudio != null)
+        {
+        // Play the audio clip when the door is smashed.
+            SmashAudio.Play();
+        }
     }
 
     private void OpenDoor()
     {
         door.gameObject.SetActive(false); // Hide the door.
-        Animator.SetTrigger("Opened");
+        //Animator.SetBool("Opened", true);
+        if (OpeningAudio != null)
+        {
+        // Play the audio clip when the door is smashed.
+            OpeningAudio.Play();
+        }
     }
 
     public void InteractWithAxe()
     {
         hasAxe = true;
         Debug.Log("You picked up the axe.");
+        pickedAxe.SetActive(true);
+        Invoke("DeactivateAxe", 5.0f);
     }
 
     public void InteractWithKey()
     {
         hasKey = true;
         Debug.Log("You found the key.");
+        pickedKey.SetActive(true);
+        Invoke("DeactivateKey", 5.0f);
+    }
+
+    private void DeactivateKey()
+    {
+        pickedKey.SetActive(false);
+    }
+
+    private void DeactivateAxe()
+    {
+        pickedAxe.SetActive(false);
     }
 }
