@@ -8,6 +8,7 @@ TagManager:
   - Lever
   - Correct part
   - Incorrect part
+  - Warning
   layers:
   - Default
   - TransparentFX

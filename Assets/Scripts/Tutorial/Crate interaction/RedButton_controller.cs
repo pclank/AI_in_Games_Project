@@ -30,6 +30,9 @@ public class RedButton_controller : MonoBehaviour
             crate.gameObject.GetComponent<Rigidbody>().useGravity = true;
 
             buttonPressed = true;
+
+            // =================
+            gameObject.transform.parent.Find("Warning trigger").GetComponent<Warning_message>().ChangeMessage();
         }
     }
 

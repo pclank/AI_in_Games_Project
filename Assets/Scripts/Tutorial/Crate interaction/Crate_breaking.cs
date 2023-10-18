@@ -5,7 +5,7 @@ using UnityEngine;
 public class Crate_breaking : MonoBehaviour
 {
     public bool broken;
-    public Material brokenCrate;
+    public Material brokenCrateMaterial;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +28,7 @@ public class Crate_breaking : MonoBehaviour
 
             broken = true;
 
-            gameObject.GetComponent<MeshRenderer>().material = brokenCrate;
+            gameObject.GetComponent<MeshRenderer>().material = brokenCrateMaterial;
 
             // This removes the crate, but also to fast for the sound to play.
             //Destroy(gameObject);
