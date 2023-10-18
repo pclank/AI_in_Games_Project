@@ -73,6 +73,8 @@ public class Conversation : MonoBehaviour
     private int dialogue_id;
     private int dialogue_state = 0;
 
+    private float timer_log_start = 0.0f;               // Time conversing started
+
     private JDialogue current_dialogue;
 
     public bool isRunning()
@@ -82,6 +84,8 @@ public class Conversation : MonoBehaviour
 
     public void StartDialogue(int d_id, GameObject npc)
     {
+        timer_log_start = Time.time;
+
         npc_object = npc;
 
         camera_object.GetComponent<RayCasting>().raycast_enabled = false;
@@ -108,7 +112,7 @@ public class Conversation : MonoBehaviour
         dialogue_state = dialogue_in_json[dialogue_id].player_lines[dialogue_in_json[dialogue_id].npc_lines[dialogue_state].player_id].choices[choice_id].next_npc_line;
 
         // Log choice
-        player_object.GetComponent<LogConversation>().addAnalytics(dialogue_id, dialogue_in_json[dialogue_id].player_lines[dialogue_in_json[dialogue_id].npc_lines[prev_state].player_id].choices[choice_id].response_type);
+        player_object.GetComponent<MasterLog>().LogChoice(dialogue_id, dialogue_in_json[dialogue_id].player_lines[dialogue_in_json[dialogue_id].npc_lines[prev_state].player_id].choices[choice_id].response_type);
 
         // Check whether you should give an item
         if (dialogue_in_json[dialogue_id].player_lines[dialogue_in_json[dialogue_id].npc_lines[prev_state].player_id].choices[choice_id].item_id != -1)
@@ -155,6 +159,10 @@ public class Conversation : MonoBehaviour
         camera_object.GetComponent<FirstPersonLook>().stop_flag = false;
 
         camera_object.GetComponent<RayCasting>().raycast_enabled = true;
+
+        // Log time spent conversing
+        float time_spent = Time.time - timer_log_start;
+        player_object.GetComponent<MasterLog>().UpdateTimeLog(time_spent);
 
         if (npc_object.GetComponent<NPC>() != null)
             npc_object.GetComponent<NPC>().ExitConversation();
