@@ -25,9 +25,6 @@ public class PlayerInteraction : MonoBehaviour
         bothHint.SetActive(false);
         pickedAxe.SetActive(false);
         pickedKey.SetActive(false);
-        //SmashAudio = GetComponent<AudioSource>();
-        //OpeningAudio = GetComponent<AudioSource>();
-
         //Animator.SetBool("Opened", false);
     }
 

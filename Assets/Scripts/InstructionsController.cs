@@ -3,7 +3,7 @@ using UnityEngine;
 public class InstructionsController : MonoBehaviour
 {
     public GameObject instructionsCanvas;
-    private float displayTime = 15.0f; // Time to display
+    private float displayTime = 5.0f; // Time to display
     private float timer;
 
     private void Start()
