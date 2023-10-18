@@ -60,14 +60,14 @@ public class PlayerInteraction : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetKeyDown(KeyCode.E) && hasAxe)
+        else if (Input.GetKeyDown(KeyCode.F) && hasAxe)
         {
             SmashDoor();
             smashHint.SetActive(false);
             bothHint.SetActive(false);
             openHint.SetActive(false);
         }
-        else if (Input.GetKeyDown(KeyCode.F) && hasKey)
+        else if (Input.GetKeyDown(KeyCode.E) && hasKey)
         {
             OpenDoor();
             openHint.SetActive(false);
