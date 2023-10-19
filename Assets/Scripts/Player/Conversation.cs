@@ -88,7 +88,7 @@ public class Conversation : MonoBehaviour
 
         npc_object = npc;
 
-        camera_object.GetComponent<RayCasting>().raycast_enabled = false;
+        //camera_object.GetComponent<RayCasting>().raycast_enabled = false;
 
         dialogue_id = d_id;
 
