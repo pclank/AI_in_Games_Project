@@ -21,14 +21,22 @@ public class MainLog
     public float nav_tut_time;
     public float machine_lvl_time;
     public float npc_lvl_time;
-    public float push_lvl_time;
+    public float statue_lvl_time;
     public float apartment_lvl_time;
 
     // Level boolean metrics
-    public int npc_lvl_choice;
+    public int npc_lvl_choice;              // 0: NPC_pushed, 1: NPC_persuaded, 2: Shortcut_used
+    public int nav_tut_red_button;
+    public int machine_lvl_parts_installed_cnt;
+    public int machine_lvl_choice;          // 0: solved, 1: rod, 2: emergency switch
+    public int apartment_lvl_axe_picked;
+    public int apartment_lvl_key_picked;
+    public int apartment_lvl_choice;        // 0: axe, 1: key
+    public int statue_lvl_puzzle_status;    // 0: not attempted, 1: attempted, 2: solved
 
     // Mechanic specific metrics
     public int push_count;
+    public int statue_lvl_reset_count;
 
     public MainLog()
     {
@@ -41,7 +49,7 @@ public class MainLog
         this.nav_tut_time = 0.0f;
         this.machine_lvl_time = 0.0f;
         this.npc_lvl_time = 0.0f;
-        this.push_lvl_time = 0.0f;
+        this.statue_lvl_time = 0.0f;
         this.apartment_lvl_time = 0.0f;
 
         this.npc_lvl_choice = -1;
@@ -53,6 +61,9 @@ public class MainLog
 public class MasterLog : MonoBehaviour
 {
     public MainLog main_log;
+
+    [Tooltip("Whether to parse existing log on level load.")]
+    public bool load_log;
 
     /// <summary>
     /// Log Conversation Choice
@@ -112,6 +123,12 @@ public class MasterLog : MonoBehaviour
     {
         string text_file = File.ReadAllText("PlayerLogs/main_log.json");
         main_log = JsonUtility.FromJson<MainLog>(text_file);
+    }
+
+    void Start()
+    {
+        if (load_log)
+            ParseLog();
     }
 
     void OnApplicationQuit()
