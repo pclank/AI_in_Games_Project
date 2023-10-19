@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class Machine_response : MonoBehaviour
 {
-    public int correctPartsNeeded;
     int partsInstalled;
     bool puzzleCompleted;
 
     AudioSource machineAudio;
+    Transform messageObject;
 
+    [SerializeField] int correctPartsNeeded;
+
+    [Header("Objects")]
+    [SerializeField] GameObject maintenanceSign;
     [SerializeField] GameObject jammedRod;
 
     [Header("Sound effects")]
@@ -21,12 +25,16 @@ public class Machine_response : MonoBehaviour
     void Start()
     {
         machineAudio = gameObject.GetComponent<AudioSource>();
+
+        ChangeSignText(0);
+
+        messageObject = maintenanceSign.transform.Find("Message");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,6 +44,7 @@ public class Machine_response : MonoBehaviour
             //Debug.Log($"The machine was given a correct part = {other.name}.");
 
             partsInstalled++;
+            ChangeSignText(0);
 
             // Play sound effect of part getting installed here.
             machineAudio.clip = repairSound;
@@ -53,6 +62,7 @@ public class Machine_response : MonoBehaviour
                 machineAudio.Play();
 
                 //Debug.Log("The machine got enough parts now.");
+                ChangeSignText(1);
 
                 GameObject.Find("Portal").GetComponent<Portal_controller>().TogglePortalObjectVisibility();
 
@@ -64,6 +74,8 @@ public class Machine_response : MonoBehaviour
         {
             // Remove the part from the world, as if it got installed.
             Destroy(other.gameObject);
+
+            ChangeSignText(2);
 
             // Play sound effect of broken machine here.
             machineAudio.clip = brokenSound;
@@ -88,7 +100,7 @@ public class Machine_response : MonoBehaviour
             boxCollChild.GetComponent<BoxCollider>().enabled = true;
 
             // Activate the mesh renderers of all meshes that make up the whole rod.
-            foreach(MeshRenderer meshRend in meshRendChildren)
+            foreach (MeshRenderer meshRend in meshRendChildren)
             {
                 meshRend.enabled = true;
             }
@@ -100,6 +112,38 @@ public class Machine_response : MonoBehaviour
         else
         {
             //Debug.Log($"The machine was given something ({other.name}) that shouldn't be interacting with it.");
+        }
+    }
+
+    void ChangeSignText(int type)
+    {
+        // Correct part
+        if (type == 0 || type == 1)
+        {
+            Debug.Log($"ChangeSignText --> {maintenanceSign.name}, has {maintenanceSign.GetComponentsInChildren<MeshRenderer>().Length} mesh renderers/children");
+
+            //Transform textObject = maintenanceSign.transform.Find("Message");
+            //Debug.Log($"{nameof(textObject)} --> {textObject.name}");
+
+            TMPro.TMP_Text tmpTextObject = maintenanceSign.transform.Find("Message").GetComponent<TMPro.TMP_Text>();
+
+            //TMPro.TMP_Text tmpTextObject = textObject.GetComponent<TMPro.TMP_Text>();
+
+            //Debug.Log($"{nameof(tmpTextObject)} --> {tmpTextObject.name}");
+
+            tmpTextObject.text = $"Gears replaced\n {partsInstalled} / {correctPartsNeeded}";
+
+            // Machine fixed
+            if (type == 1)
+            {
+                messageObject.GetComponent<TMPro.TMP_Text>().color = Color.green;
+            }
+        }
+        // Machine broken
+        else
+        {
+            messageObject.GetComponent<TMPro.TMP_Text>().text = "ERROR";
+            messageObject.GetComponent<TMPro.TMP_Text>().color = Color.red;
         }
     }
 }
