@@ -10,6 +10,8 @@ public class Machine_response : MonoBehaviour
 
     AudioSource machineAudio;
 
+    [SerializeField] GameObject jammedRod;
+
     [Header("Sound effects")]
     [SerializeField] AudioClip repairSound;
     [SerializeField] AudioClip fixedSound;
@@ -73,6 +75,23 @@ public class Machine_response : MonoBehaviour
             GameObject.Find("Portal").GetComponent<Portal_controller>().TogglePortalObjectVisibility();
 
             puzzleCompleted = true;
+
+            // ======================
+
+            GameObject boxCollChild = jammedRod.transform.Find("KnifeSharp_low").gameObject;
+            MeshRenderer[] meshRendChildren = boxCollChild.GetComponentsInChildren<MeshRenderer>();
+
+            Debug.Log($"{nameof(boxCollChild)} = {boxCollChild}");
+            Debug.Log($"{nameof(meshRendChildren)} = {meshRendChildren} = {meshRendChildren.Length} elements");
+
+            // Activate box collider so player can't walk through it.
+            boxCollChild.GetComponent<BoxCollider>().enabled = true;
+
+            // Activate the mesh renderers of all meshes that make up the whole rod.
+            foreach(MeshRenderer meshRend in meshRendChildren)
+            {
+                meshRend.enabled = true;
+            }
         }
         else if (other.CompareTag("Player"))
         {
