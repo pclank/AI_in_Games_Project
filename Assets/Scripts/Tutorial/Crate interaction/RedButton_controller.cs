@@ -31,8 +31,10 @@ public class RedButton_controller : MonoBehaviour
 
             buttonPressed = true;
 
+            // TODO LOG pressed the red button here.
+
             // =================
-            gameObject.transform.parent.Find("Warning trigger").GetComponent<Warning_message>().ChangeMessage();
+            //gameObject.transform.parent.Find("Warning trigger").GetComponent<Warning_message>().ChangeMessage();
         }
     }
 

@@ -47,6 +47,8 @@ public class Machine_response : MonoBehaviour
             {
                 //Debug.Log($"The machine was given a correct part = {other.name}.");
 
+                // TODO LOG parts installed here.
+
                 partsInstalled++;
                 ChangeSignText(0);
 
@@ -71,6 +73,8 @@ public class Machine_response : MonoBehaviour
                     GameObject.Find("Portal").GetComponent<Portal_controller>().TogglePortalObjectVisibility();
 
                     puzzleCompleted = true;
+
+                    // TODO LOG machine fixed choice here.
                 }
             }
 
@@ -91,6 +95,8 @@ public class Machine_response : MonoBehaviour
                 GameObject.Find("Portal").GetComponent<Portal_controller>().TogglePortalObjectVisibility();
 
                 puzzleCompleted = true;
+
+                // TODO LOG machine jammed choice here.
 
                 // ======================
 

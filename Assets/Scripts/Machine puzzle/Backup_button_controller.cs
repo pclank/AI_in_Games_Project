@@ -27,6 +27,8 @@ public class Backup_button_controller : MonoBehaviour
             buttonParent.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
 
 
+            // TODO LOG backup generator used here.
+
             // Play click sound
             buttonParent.GetComponent<AudioSource>().Play();
 

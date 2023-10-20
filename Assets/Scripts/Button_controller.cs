@@ -5,7 +5,7 @@ using UnityEngine;
 public class Button_controller : MonoBehaviour
 {
     public GameObject portalObject;   // Reference to the portal prefab instance.
-    public GameObject portalDoorObject; // Reference to the object with the "Portal" tag
+    //public GameObject portalDoorObject; // Reference to the object with the "Portal" tag
     public GameObject Message; 
     public float displayDuration = 5f;
 
@@ -14,7 +14,10 @@ public class Button_controller : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        Debug.Log($"{debugClassName}: Button Works");
+        portalObject.GetComponent<Portal_controller>().TogglePortalObjectVisibility();
+
+        /*
+        //Debug.Log($"{debugClassName}: Button Works");
         TogglePortalVisibility();
 
         if (Message != null)
@@ -22,13 +25,14 @@ public class Button_controller : MonoBehaviour
             Message.gameObject.SetActive(true);
             StartCoroutine(HideImageAfterDelay());
         }
+        */
     }
 
     private void TogglePortalVisibility()
     {
         if (portalObject != null)
         {
-            Debug.Log($"{debugClassName}: Button toggled portal using portalObject");
+            //Debug.Log($"{debugClassName}: Button toggled portal using portalObject");
 
             // Oh right, Portal Doors are objects, not components.
             //Component door = portalObject.GetComponent("Portal Door");
@@ -49,15 +53,6 @@ public class Button_controller : MonoBehaviour
                     Debug.Log($"{debugClassName}: doorScript is NULL!");
             }
         }
-
-        if (portalDoorObject != null)
-        {
-            //Debug.Log($"{debugClassName}: Button toggled portal using portalDoorObject");
-
-            portalDoorObject.SetActive(!portalDoorObject.activeSelf);
-        }
-        else
-            Debug.Log($"{debugClassName}: portalDoorObject is NULL!");
     }
     
     private IEnumerator HideImageAfterDelay()
