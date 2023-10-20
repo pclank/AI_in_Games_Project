@@ -7,6 +7,7 @@ public class Backup_button_controller : MonoBehaviour
     bool nearButton, pressed;
 
     [SerializeField] GameObject backupGenerator;
+    [SerializeField] GameObject portal;
 
     // Start is called before the first frame update
     void Start()
@@ -29,8 +30,14 @@ public class Backup_button_controller : MonoBehaviour
             // Play click sound
             buttonParent.GetComponent<AudioSource>().Play();
 
-            // Play generator sound.
-            backupGenerator.GetComponent<AudioSource>().Play();
+            // Having both generators make sound is a bit much, one is enough.
+            if (!portal.GetComponent<Portal_controller>().portalActive)
+            {
+                // Play generator sound.
+                backupGenerator.GetComponent<AudioSource>().Play();
+            }
+
+            portal.GetComponent<Portal_controller>().TogglePortalObjectVisibility();
 
             pressed = true;
         }
@@ -40,7 +47,7 @@ public class Backup_button_controller : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Is this being called?");
+            //Debug.Log("Is this being called?");
 
             /*
             Transform parentEmergPowButton = gameObject.transform.parent;

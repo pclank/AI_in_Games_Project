@@ -42,11 +42,11 @@ public class Warning_message : MonoBehaviour
 
     public void ChangeMessage()
     {
-        Debug.Log($"Is {nameof(ChangeMessage)} being called?");
+        //Debug.Log($"Is {nameof(ChangeMessage)} being called?");
 
         var test = UIMessageObject.transform.Find("Message");
 
-        Debug.Log($"Has test = {test} been found?");
+        //Debug.Log($"Has test = {test} been found?");
 
         test.GetComponent<TMPro.TMP_Text>().text = aftermessage;
 

@@ -36,8 +36,6 @@ public class Button_controller : MonoBehaviour
 
             if (door != null)
             {
-                Debug.Log($"{debugClassName}: door is something.");
-
                 door.SetActive(!door.activeSelf);
                 //door.GetComponent<Portal_controller>().activated = !door.GetComponent<Portal_controller>().activated;
 
@@ -50,15 +48,11 @@ public class Button_controller : MonoBehaviour
                 else
                     Debug.Log($"{debugClassName}: doorScript is NULL!");
             }
-            else
-                Debug.Log($"{debugClassName}: door is NULL!");
         }
-        else
-            Debug.Log($"{debugClassName}: portalObject is NULL!");
 
         if (portalDoorObject != null)
         {
-            Debug.Log($"{debugClassName}: Button toggled portal using portalDoorObject");
+            //Debug.Log($"{debugClassName}: Button toggled portal using portalDoorObject");
 
             portalDoorObject.SetActive(!portalDoorObject.activeSelf);
         }

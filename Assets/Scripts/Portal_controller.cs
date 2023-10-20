@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Portal_controller : MonoBehaviour
 {
-    private GameObject portalDoor;
+    GameObject portalDoor;
+    public bool portalActive;
 
     public bool initialActiveValue; // Whether the portal is already activated.
     public string sceneToLoad = "OutdoorsScene"; // The name of the scene to load
@@ -16,17 +17,17 @@ public class Portal_controller : MonoBehaviour
     {
         portalDoor = GameObject.Find("Portal Door");
 
-        Debug.Log($"{debugClassName}: Toggle portal");
+        //Debug.Log($"{debugClassName}: Toggle portal");
 
         if (initialActiveValue)
         {
-            Debug.Log($"{debugClassName}: Initialize active portal");
+            //Debug.Log($"{debugClassName}: Initialize active portal");
         }
         else
         {
             portalDoor.SetActive(!portalDoor.activeSelf);
 
-            Debug.Log($"{debugClassName}: Initialize inactive portal");
+            //Debug.Log($"{debugClassName}: Initialize inactive portal");
         }
     }
 
@@ -34,7 +35,16 @@ public class Portal_controller : MonoBehaviour
     {
         if (portalDoor != null)
         {
-            portalDoor.SetActive(!portalDoor.activeSelf);
+            GameObject objectWithPopup = gameObject.transform.Find("UI").gameObject;
+
+            // Audio should play on awake
+            objectWithPopup.SetActive(true);
+                
+            //elem.GetComponentInChildren<AudioSource>().Play();
+
+            portalDoor.SetActive(true);
+
+            portalActive = true;
         }
         else
             Debug.Log($"{debugClassName}: portalDoor is NULL!");
@@ -44,7 +54,7 @@ public class Portal_controller : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log($"{debugClassName}: Player collided with portal.");
+            //Debug.Log($"{debugClassName}: Player collided with portal.");
 
             // Only teleport if the portal is active.
             if (portalDoor.activeSelf)

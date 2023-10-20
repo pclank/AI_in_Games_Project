@@ -15,6 +15,7 @@ public class Machine_response : MonoBehaviour
     [Header("Objects")]
     [SerializeField] GameObject maintenanceSign;
     [SerializeField] GameObject jammedRod;
+    [SerializeField] GameObject portal;
 
     [Header("Sound effects")]
     [SerializeField] AudioClip repairSound;
@@ -39,79 +40,83 @@ public class Machine_response : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Correct part") && !puzzleCompleted)
+        // If the portal is already active (by using the backup generator for example), we ignore any further attempts to fix/jam it?
+        if (!portal.GetComponent<Portal_controller>().portalActive)
         {
-            //Debug.Log($"The machine was given a correct part = {other.name}.");
-
-            partsInstalled++;
-            ChangeSignText(0);
-
-            // Play sound effect of part getting installed here.
-            machineAudio.clip = repairSound;
-            machineAudio.Play();
-
-            // Remove the part from the world, as if it got installed.
-            Destroy(other.gameObject);
-
-            // The machine was solved correctly.
-            if (partsInstalled == correctPartsNeeded)
+            if (other.CompareTag("Correct part") && !puzzleCompleted)
             {
-                // Play sound effect of machine getting fixed here.
-                machineAudio.clip = fixedSound;
-                machineAudio.loop = true;
+                //Debug.Log($"The machine was given a correct part = {other.name}.");
+
+                partsInstalled++;
+                ChangeSignText(0);
+
+                // Play sound effect of part getting installed here.
+                machineAudio.clip = repairSound;
                 machineAudio.Play();
 
-                //Debug.Log("The machine got enough parts now.");
-                ChangeSignText(1);
+                // Remove the part from the world, as if it got installed.
+                Destroy(other.gameObject);
+
+                // The machine was solved correctly.
+                if (partsInstalled == correctPartsNeeded)
+                {
+                    // Play sound effect of machine getting fixed here.
+                    machineAudio.clip = fixedSound;
+                    machineAudio.loop = true;
+                    machineAudio.Play();
+
+                    //Debug.Log("The machine got enough parts now.");
+                    ChangeSignText(1);
+
+                    GameObject.Find("Portal").GetComponent<Portal_controller>().TogglePortalObjectVisibility();
+
+                    puzzleCompleted = true;
+                }
+            }
+
+            else if (other.CompareTag("Incorrect part") && !puzzleCompleted)
+            {
+                // Remove the part from the world, as if it got installed.
+                Destroy(other.gameObject);
+
+                ChangeSignText(2);
+
+                // Play sound effect of broken machine here.
+                machineAudio.clip = brokenSound;
+                machineAudio.Play();
+
+                // The machine was solved incorrectly.
+                //Debug.Log("The machine was jammed, but somehow the portal turned on.");
 
                 GameObject.Find("Portal").GetComponent<Portal_controller>().TogglePortalObjectVisibility();
 
                 puzzleCompleted = true;
+
+                // ======================
+
+                GameObject boxCollChild = jammedRod.transform.Find("KnifeSharp_low").gameObject;
+                MeshRenderer[] meshRendChildren = boxCollChild.GetComponentsInChildren<MeshRenderer>();
+
+                //Debug.Log($"{nameof(boxCollChild)} = {boxCollChild}");
+                //Debug.Log($"{nameof(meshRendChildren)} = {meshRendChildren} = {meshRendChildren.Length} elements");
+
+                // Activate box collider so player can't walk through it.
+                boxCollChild.GetComponent<BoxCollider>().enabled = true;
+
+                // Activate the mesh renderers of all meshes that make up the whole rod.
+                foreach (MeshRenderer meshRend in meshRendChildren)
+                {
+                    meshRend.enabled = true;
+                }
             }
-        }
-
-        else if (other.CompareTag("Incorrect part") && !puzzleCompleted)
-        {
-            // Remove the part from the world, as if it got installed.
-            Destroy(other.gameObject);
-
-            ChangeSignText(2);
-
-            // Play sound effect of broken machine here.
-            machineAudio.clip = brokenSound;
-            machineAudio.Play();
-
-            // The machine was solved incorrectly.
-            Debug.Log("The machine was jammed, but somehow the portal turned on.");
-
-            GameObject.Find("Portal").GetComponent<Portal_controller>().TogglePortalObjectVisibility();
-
-            puzzleCompleted = true;
-
-            // ======================
-
-            GameObject boxCollChild = jammedRod.transform.Find("KnifeSharp_low").gameObject;
-            MeshRenderer[] meshRendChildren = boxCollChild.GetComponentsInChildren<MeshRenderer>();
-
-            Debug.Log($"{nameof(boxCollChild)} = {boxCollChild}");
-            Debug.Log($"{nameof(meshRendChildren)} = {meshRendChildren} = {meshRendChildren.Length} elements");
-
-            // Activate box collider so player can't walk through it.
-            boxCollChild.GetComponent<BoxCollider>().enabled = true;
-
-            // Activate the mesh renderers of all meshes that make up the whole rod.
-            foreach (MeshRenderer meshRend in meshRendChildren)
+            else if (other.CompareTag("Player"))
             {
-                meshRend.enabled = true;
+                // Don't print any debug logs if the player gets really close.
             }
-        }
-        else if (other.CompareTag("Player"))
-        {
-            // Don't print any debug logs if the player gets really close.
-        }
-        else
-        {
-            //Debug.Log($"The machine was given something ({other.name}) that shouldn't be interacting with it.");
+            else
+            {
+                //Debug.Log($"The machine was given something ({other.name}) that shouldn't be interacting with it.");
+            }
         }
     }
 
@@ -120,7 +125,7 @@ public class Machine_response : MonoBehaviour
         // Correct part
         if (type == 0 || type == 1)
         {
-            Debug.Log($"ChangeSignText --> {maintenanceSign.name}, has {maintenanceSign.GetComponentsInChildren<MeshRenderer>().Length} mesh renderers/children");
+            //Debug.Log($"ChangeSignText --> {maintenanceSign.name}, has {maintenanceSign.GetComponentsInChildren<MeshRenderer>().Length} mesh renderers/children");
 
             //Transform textObject = maintenanceSign.transform.Find("Message");
             //Debug.Log($"{nameof(textObject)} --> {textObject.name}");

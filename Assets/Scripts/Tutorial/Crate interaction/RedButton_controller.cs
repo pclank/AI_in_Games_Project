@@ -20,7 +20,7 @@ public class RedButton_controller : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && nearButton && !buttonPressed)
         {
             //Debug.Log($"Parent = {gameObject.transform.parent.name}");
-            Debug.Log($"Mesh = {gameObject.transform.parent.Find("Mesh").name}");
+            //Debug.Log($"Mesh = {gameObject.transform.parent.Find("Mesh").name}");
 
             // Scaling the Button object like this also moves it for some reason?
             //gameObject.transform.parent.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
